@@ -1,0 +1,44 @@
+{
+  "name": "knight/artifact-entity-adapter-mysql",
+  "type": "library",
+  "description": "Knight PHP artifact mysql",
+  "keywords": [
+    "ubyte",
+    "database",
+    "knight",
+    "artifact",
+    "entity",
+    "adapter",
+    "mysql"
+  ],
+  "homepage": "https://github.com/energia-source/knight-artifact-entity-adapter-mysql",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paolo Fabris",
+      "email": "support@ubyte.it",
+      "homepage": "https://www.ubyte.it/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MySQL\\": "lib/"
+    }
+  },
+  "require": {
+    "php": ">=7.3",
+    "energia-source/knight-armor": ">=2.0.1",
+    "energia-source/knight-artifact-entity": ">=5.0.1"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/energia-source/knight-armor"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/energia-source/knight-artifact-entity"
+    }
+  ]
+}
