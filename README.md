@@ -1,0 +1,1 @@
+# knight-artifact-entity-adapter-mysql
