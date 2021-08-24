@@ -4,6 +4,7 @@ namespace MySQL;
 
 use PDO;
 use PDOStatement;
+use PDOException;
 
 use Knight\armor\Output;
 use Knight\armor\CustomException;
@@ -91,10 +92,11 @@ class Statement extends Bind
                 return $sintax_prepare->bindParam($key, $value, PDO::PARAM_LOB);
             });
 
-            return false === $sintax_prepare->execute() ? null : $sintax_prepare;
-        } catch (CustomException $exception) {
-            Output::print(false);
+            if (!!$sintax_prepare->execute()) return $sintax_prepare;
+        } catch (PDOException $exception) {
         }
+
+        return null;
     }
 
     public function getConnection() :? Connection
