@@ -13,10 +13,9 @@ trait Matrioska
 {
     protected static $closure; // Closure
 
-    public static function setClosure(Closure $callable) : self
+    public static function setClosure(Closure $callable) : void
     {
-        $this->closure = $callable;
-        return $this;
+        static::$closure = $callable;
     }
 
     protected static function matrioska(Table $child, string $type, Table $table = null) : void
@@ -44,7 +43,7 @@ trait Matrioska
         }
 
         $callable = static::getClosure();
-        if (null !== $callable) $callable->call($child);
+        if (null !== $callable) call_user_func($callable, $child);
 
         $child_fields = $child->getFields();
         foreach ($child_fields as $field) {
@@ -79,6 +78,7 @@ trait Matrioska
     protected static function acquiesce(Table $child) : bool
     {
         $injection = $child->hasAdapter() ? $child->getInjection()->getColumns() : array();
-        return !$child->isDefault() || !empty($injection);
+        return !$child->isDefault()
+            || !empty($injection);
     }
 }

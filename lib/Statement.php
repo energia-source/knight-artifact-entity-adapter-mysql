@@ -81,7 +81,7 @@ class Statement extends Bind
 
             $sintax_bind = $this->getBind();
             $sintax_bind = array_filter($sintax_bind, function (string $key) use ($sintax) {
-                return preg_match('/' . chr(40) . chr(58) . $key . chr(41) . '/', $sintax);
+                return preg_match('/' . chr(40) . chr(58) . $key . chr(41) . '\b/', $sintax);
             }, ARRAY_FILTER_USE_KEY);
 
             array_walk($sintax_bind, function ($value, $key) use ($sintax_prepare) {
