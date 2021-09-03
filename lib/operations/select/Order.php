@@ -25,13 +25,13 @@ class Order
 
     public function pushDirections(Direction ...$directions) : self
     {
-        if (!!$direction) array_push($this->collections, ...$direction);
+        if (!!$directions) array_push($this->collections, ...$directions);
         return $this;
     }
 
-    public function pushFields(Field ...$field) : self
+    public function pushFields(Field ...$fields) : self
     {
-        if (!!$field) array_push($this->collections, ...$field);
+        if (!!$fields) array_push($this->collections, ...$fields);
         return $this;
     }
 
