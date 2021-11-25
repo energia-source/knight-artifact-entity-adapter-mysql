@@ -34,10 +34,13 @@ abstract class Column extends Option implements Elaborate
 
         $table = $this->getTable();
         $table_columns = $select->getAllColumns($table);
-        if (array_key_exists($field, $table_columns)) $field_elaborate = $table_columns[$field];
+        if (array_key_exists($field, $table_columns))
+            $field_elaborate = $table_columns[$field];
 
         $group = $select->getGroup()->getColumns(null, true);
-        if (false === in_array($field, $group)) $field_elaborate = 'ANY_VALUE' . chr(40) . $field_elaborate . chr(41);
+        if (!empty($group) && !in_array($field, $group))
+            $field_elaborate = 'ANY_VALUE' . chr(40) . $field_elaborate . chr(41);
+
         return $field_elaborate;
     }
 
