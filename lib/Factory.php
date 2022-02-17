@@ -21,13 +21,13 @@ final class Factory
 
     protected function __construct() {}
 
-    public static function connect(string $database = null, string $username = null, string $password = null, string $host = null, string $port = null) : Connection
+    public static function connect(string $constant = 'DEFAULT') : Connection
     {
-        $connection_database = $database ?? static::getConfiguration(static::CONFIGURATION_DATABASE, true, static::CONFIGURATION_FILENAME, 'DEFAULT');
-        $connection_username = $username ?? static::getConfiguration(static::CONFIGURATION_DATABASE_USERNAME, true, static::CONFIGURATION_FILENAME, 'DEFAULT');
-        $connection_password = $password ?? static::getConfiguration(static::CONFIGURATION_DATABASE_PASSWORD, true, static::CONFIGURATION_FILENAME, 'DEFAULT');
-        $connection_host = $host ?? static::getConfiguration(static::CONFIGURATION_HOST, true, static::CONFIGURATION_FILENAME, 'DEFAULT');
-        $connection_port = $port ?? static::getConfiguration(static::CONFIGURATION_PORT, true, static::CONFIGURATION_FILENAME, 'DEFAULT');
+        $connection_database = static::getConfiguration(static::CONFIGURATION_DATABASE, true, static::CONFIGURATION_FILENAME, $constant);
+        $connection_username = static::getConfiguration(static::CONFIGURATION_DATABASE_USERNAME, true, static::CONFIGURATION_FILENAME, $constant);
+        $connection_password = static::getConfiguration(static::CONFIGURATION_DATABASE_PASSWORD, true, static::CONFIGURATION_FILENAME, $constant);
+        $connection_host = static::getConfiguration(static::CONFIGURATION_HOST, true, static::CONFIGURATION_FILENAME, $constant);
+        $connection_port = static::getConfiguration(static::CONFIGURATION_PORT, true, static::CONFIGURATION_FILENAME, $constant);
 
         return static::getConnection($connection_database, $connection_username, $connection_password, $connection_host, $connection_port);
     }
